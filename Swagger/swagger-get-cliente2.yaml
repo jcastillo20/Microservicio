@@ -1,0 +1,121 @@
+swagger: '2.0'
+info:
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: urn:tos
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+host: localhost:8080
+basePath: /
+tags:
+  - name: cliente-controller
+    description: Cliente Controller
+paths:
+  /cliente/dni/{dni}:
+    get:
+      tags:
+        - cliente-controller
+      summary: obtenerClienteDni
+      operationId: obtenerClienteDniUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: dni
+          in: path
+          description: dni
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cliente'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /cliente/email/{email}:
+    get:
+      tags:
+        - cliente-controller
+      summary: obtenerClienteEmail
+      operationId: obtenerClienteEmailUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: email
+          in: path
+          description: email
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cliente'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /cliente/{id}:
+    get:
+      tags:
+        - cliente-controller
+      summary: obtenerCliente
+      operationId: obtenerClienteUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Cliente'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  Cliente:
+    type: object
+    properties:
+      apellidos:
+        type: string
+      dni:
+        type: string
+      email:
+        type: string
+      fecha_creacion:
+        type: string
+        format: date
+      fecha_nacimiento:
+        type: string
+        format: date
+      id:
+        type: integer
+        format: int32
+      nombres:
+        type: string
+    title: Cliente
